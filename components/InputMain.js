@@ -13,34 +13,33 @@ const InputMain = ({
 
         return (
             <>
-            
-            {label && (
-                <Text style={styles.label}>{label}</Text>
-            )}
-            <View style={styles.container}>
-                <TextInput
-                    style={numberOfLines > 1 ? styles.textArea : styles.textInput}
-                    placeholder={placeholder}
-                    secureTextEntry={isPassword && isPasswordVisible}
-                    value={value}
-                    onChangeText={onChangeText}
-                    multiline={numberOfLines > 1 ? true : false}
-                    numberOfLines={numberOfLines}
-                    placeholderTextColor="#999"
-                />
-                {isPassword && (
-                <TouchableOpacity
-                    style={styles.iconContainer}
-                    onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-                >
-                    <Icon
-                        name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
-                        size={20}
-                        color="#666"
-                    />
-                </TouchableOpacity>
+                {label && (
+                    <Text style={styles.label}>{label}</Text>
                 )}
-            </View>
+                <View style={styles.container}>
+                    <TextInput
+                        style={numberOfLines > 1 ? styles.textArea : styles.textInput}
+                        placeholder={placeholder}
+                        secureTextEntry={isPassword && isPasswordVisible}
+                        value={value}
+                        onChangeText={onChangeText}
+                        multiline={numberOfLines > 1 ? true : false}
+                        numberOfLines={numberOfLines}
+                        placeholderTextColor="#999"
+                    />
+                    {isPassword && (
+                    <TouchableOpacity
+                        style={styles.iconContainer}
+                        onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+                    >
+                        <Icon
+                            name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
+                            size={20}
+                            color="#666"
+                        />
+                    </TouchableOpacity>
+                    )}
+                </View>
             </>
         );
 };
