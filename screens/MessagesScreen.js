@@ -7,10 +7,9 @@ import {
   ScrollView,
 } from 'react-native';
 
-import ButtonSettings from '../components/ButtonSettings';
 import Message from '../components/Message';
 
-export default function SupportScreen() {
+export default function MessagesScreen({navigation}) {
 
   return (
     <ScrollView style={styles.container}>
@@ -23,17 +22,17 @@ export default function SupportScreen() {
             shortMessage={'Chat with our support team'}
             time={'05:46 PM'}
             chatCategory={'Elite'}
-            onPress={() => {}} />
+            onPress={() => navigation.navigate('Chat')} />
         <Message 
             chatName={'Alex Rivera'} 
             shortMessage={'Browse our guides and tutorials'}
             time={'11:24 AM'}
-            onPress={() => {}} />
+            onPress={() => navigation.navigate('Chat')} />
         <Message 
             chatName={'Sarah Chen'} 
             shortMessage={'Find answers to common questions'}
             time={'07:51 PM'}
-            onPress={() => {}} />
+            onPress={() => navigation.navigate('Chat')} />
       </View>
 
       

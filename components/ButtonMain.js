@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const ButtonMain = ({children}) =>  {
+const ButtonMain = ({children, onPress}) =>  {
     return (
-        <TouchableOpacity style={styles.submitButton}>
+        <TouchableOpacity style={styles.submitButton} onPress={onPress}>
             <Text style={styles.submitButtonText}>{children}</Text>
         </TouchableOpacity>
     );
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     submitButton: {
         backgroundColor: '#fff',
         paddingVertical: 15,
-        paddingHorizontal: 24,
+        paddingHorizontal: 30,
         borderRadius: 20,
         alignItems: 'center',
         marginTop: 10,

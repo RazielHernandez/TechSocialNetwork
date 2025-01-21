@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
     },
     subtitle: {
-        fontSize: 14,
+        fontSize: 13,
         color: '#aaa',
     },
 });

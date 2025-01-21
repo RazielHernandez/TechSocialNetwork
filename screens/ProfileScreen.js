@@ -1,146 +1,145 @@
-import React, { useState } from 'react';
+import React from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-} from 'react-native';
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    ScrollView,
+    Button,
+    TouchableOpacity,
+  } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import InputMain from '../components/InputMain';
-import ButtonMain from '../components/ButtonMain';
 
-export default function ProfileScreen() {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
-  const [twitter, setTwitter] = useState('');
-  const [linkedIn, setLinkedIn] = useState('');
-  const [website, setWebsite] = useState('');
+import ButtonSettings from "../components/ButtonSettings";
+import ButtonMain from "../components/ButtonMain";
+import ButtonIcon from "../components/ButtonIcon";
 
-  const handleSave = () => {
-    // Handle save logic here
-    console.log('Profile saved:', {
-      name,
-      description,
-      city,
-      country,
-      twitter,
-      linkedIn,
-      website,
-    });
-  };
+export default function ProfileScreen ({navigation}) {
+    return (
+        <ScrollView style={styles.container}>
 
-  return (
-    <ScrollView style={styles.container}>
-      {/* Profile Picture Section */}
-      <View style={styles.profilePictureContainer}>
-        <Image
-          source={{
-            uri: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80',
-          }}
-          style={styles.profilePicture}
-        />
-        <TouchableOpacity style={styles.cameraButton}>
-          <Ionicons name="camera" size={20} color="#ccc" />
-        </TouchableOpacity>
-      </View>
+            <View style={styles.profileSection}>
+                <Image
+                    source={{ uri: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80' }}
+                    style={styles.profileImage}
+                />
+                <Text style={styles.profileName}>John Doe</Text>
+                <Text style={styles.profileSubtitle}>Software Engineer</Text>
+            </View>
 
-      {/* Input Fields */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.sectionTitle}>Profile</Text>
-        <InputMain placeholder='Name' label='Name'/>
-        <InputMain placeholder='Description' label='Description' numberOfLines={3}/>
-        <InputMain placeholder='City' label='City'/>
-        <InputMain placeholder='Country' label='Country'/>
-      </View>
+            <View style={styles.profileSection}>
+                <View style={styles.profileRow}>
+                    <Ionicons name="globe-outline" size={20} color="#ccc" style={{padding: 5}}/>
+                    <Text style={styles.profileText}>Toronto, Canada</Text>
+                </View>
+                <View style={styles.profileRow}>
+                    <Ionicons name="language" size={20} color="#ccc" style={{padding: 5}}/>
+                    <Text style={styles.profileText}>English, French</Text>
+                </View>
+            </View>
 
-      {/* Social Media Links */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.sectionTitle}>Social Media Links</Text>
-        <InputMain placeholder='account@' label='X'/>
-        <InputMain placeholder='www.LinkedIn.com/In/name' label='LinkedIn'/>
-        <InputMain placeholder='www.website.com' label='Website'/>
-      </View>
+            <View style={styles.profileSection}>
+                <View style={styles.profileRow}>
+                    <View style={styles.profileColumn}>
+                        <Text style={styles.profileSubtitle}>24</Text>
+                        <Text style={styles.profileText}>Campaigns</Text>
+                    </View>
+                    <View style={styles.profileColumn}>
+                        <Text style={styles.profileSubtitle}>52.0K</Text>
+                        <Text style={styles.profileText}>Followers</Text>
+                    </View>
+                    <View style={styles.profileColumn}>
+                        <Text style={styles.profileSubtitle}>125.0K</Text>
+                        <Text style={styles.profileText}>Earnings</Text>
+                    </View>
+                </View>
+            </View>
 
-      {/* Save Button */}
-      <View style={styles.inputContainer}>
-        <ButtonMain>Save Changes</ButtonMain>
-      </View>
-      
-    </ScrollView>
-  );
+            <View style={styles.profileSection} >
+                <View style={styles.profileRow}>
+                    <ButtonMain onPress={() => navigation.navigate('Edit Profile')}>Edit Profile</ButtonMain>
+                    <ButtonIcon iconName={'share-social'} />
+                </View>
+            </View>
+            
+            
+            <View style={styles.profileSection}>
+                <View style={styles.profileRow}>
+                    <ButtonIcon iconName={'logo-twitter'} />
+                    <ButtonIcon iconName={'logo-instagram'} />
+                    <ButtonIcon iconName={'logo-tiktok'} />
+                    <ButtonIcon iconName={'logo-linkedin'} />
+                </View>
+            </View>
+
+            <ButtonSettings iconName={'grid-outline'} onPress={() => {}} title={'Products'} />
+            <ButtonSettings iconName={'card-outline'} onPress={() => {}} title={'Payment'} />
+            <ButtonSettings iconName={'cube-outline'} onPress={() => {}} title={'Orders'} />
+            <ButtonSettings iconName={'heart-outline'} onPress={() => {}} title={'Favourites'} />
+            <ButtonSettings iconName={'settings-outline'} onPress={() => navigation.navigate('Settings')} title={'Settings'} />
+
+        </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#141414',
-    padding: 10,
+    padding: 5,
     color: '#ffffff',
+    alignContent: 'center',
   },
-  profilePictureContainer: {
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    padding: 20,
+    textAlign: 'center',
+    color: '#fff',
+  },
+  profileSection: {
     alignItems: 'center',
-    marginVertical: 20,
-    position: 'relative',
+    marginVertical: 8,
   },
-  profilePicture: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    backgroundColor: '#ddd',
-  },
-  cameraButton: {
-    position: 'absolute',
-    bottom: 0,
-    right: 110,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#fff',
+  profileRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: '#fff',
+    paddingHorizontal: 10,
   },
-  inputContainer: {
-    marginBottom: 20,
+  profileColumn: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingHorizontal: 10,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    padding: 10,
-    marginBottom: 15,
-    fontSize: 16,
-    backgroundColor: '#fff',
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 5,
   },
-  description: {
-    height: 80,
-    textAlignVertical: 'top',
+  profileName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
   },
-  socialMediaContainer: {
-    marginBottom: 20,
+  profileText: {
+    fontSize: 14,
+    color: '#aaa',
+  },
+  profileSubtitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#aaa',
+    padding: 5,
+  },
+  section: {
+    marginVertical: 10,
+    paddingHorizontal: 10,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#555',
     marginBottom: 10,
-  },
-  saveButton: {
-    backgroundColor: '#007BFF',
-    paddingVertical: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  saveButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });

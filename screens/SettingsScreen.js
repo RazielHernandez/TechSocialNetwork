@@ -9,12 +9,11 @@ import {
 
 import ButtonSettings from '../components/ButtonSettings';
 
-export default function SettingsScreen() {
+export default function SettingsScreen({navigation}) {
 
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
-      <Text style={styles.title}>Settings</Text>
 
       {/* Profile Section */}
       <View style={styles.profileSection}>
@@ -29,7 +28,7 @@ export default function SettingsScreen() {
       {/* Account Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Account</Text>
-        <ButtonSettings iconName={'person-outline'} title={'Profile Information'} onPress={() => {}} rightIcon={"chevron-forward"}/>
+        <ButtonSettings iconName={'person-outline'} title={'Profile Information'} onPress={() => navigation.navigate('Edit Profile')} rightIcon={"chevron-forward"}/>
         <ButtonSettings iconName={'lock-closed-outline'} title={'Security & Privacy'} onPress={() => {}} rightIcon={"chevron-forward"}/>
         <ButtonSettings iconName={'card-outline'} title={'Payment Options'} onPress={() => {}} rightIcon={"chevron-forward"}/>
       </View>
@@ -44,7 +43,7 @@ export default function SettingsScreen() {
 
       {/* Help & Support Section */}
       <View style={styles.section}>
-        <ButtonSettings iconName={'help-circle-outline'} title={'Help & Support'} onPress={() => {}} rightIcon={"chevron-forward"}/>
+        <ButtonSettings iconName={'help-circle-outline'} title={'Help & Support'} onPress={() => navigation.navigate('Support')} rightIcon={"chevron-forward"}/>
         <ButtonSettings iconName={'log-out-outline'} title={'Logout'} onPress={() => {}} rightIcon={"chevron-forward"}/>
       </View>
     </ScrollView>
