@@ -30,13 +30,13 @@ export default function SettingsScreen({navigation}) {
         <Text style={styles.sectionTitle}>Account</Text>
         <ButtonSettings iconName={'person-outline'} title={'Profile Information'} onPress={() => navigation.navigate('Edit Profile')} rightIcon={"chevron-forward"}/>
         <ButtonSettings iconName={'lock-closed-outline'} title={'Security & Privacy'} onPress={() => {}} rightIcon={"chevron-forward"}/>
-        <ButtonSettings iconName={'card-outline'} title={'Payment Options'} onPress={() => {}} rightIcon={"chevron-forward"}/>
+        <ButtonSettings iconName={'card-outline'} title={'Payment Options'} onPress={() => navigation.navigate('Payment Methods')} rightIcon={"chevron-forward"}/>
       </View>
 
       {/* Preferences Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Preferences</Text>
-        <ButtonSettings iconName={'notifications-outline'} title={'Notifications'} onPress={() => {}} rightIcon={"chevron-forward"}/>
+        <ButtonSettings iconName={'notifications-outline'} title={'Notifications'} onPress={() => navigation.navigate('Notifications')} rightIcon={"chevron-forward"}/>
         <ButtonSettings iconName={'moon'} title={'Appearance'} onPress={() => {}} rightIcon={"chevron-forward"}/>
         <ButtonSettings iconName={'globe-outline'} title={'Language & Region'} onPress={() => {}} rightIcon={"chevron-forward"}/>
       </View>
@@ -44,7 +44,12 @@ export default function SettingsScreen({navigation}) {
       {/* Help & Support Section */}
       <View style={styles.section}>
         <ButtonSettings iconName={'help-circle-outline'} title={'Help & Support'} onPress={() => navigation.navigate('Support')} rightIcon={"chevron-forward"}/>
-        <ButtonSettings iconName={'log-out-outline'} title={'Logout'} onPress={() => {}} rightIcon={"chevron-forward"}/>
+        <ButtonSettings 
+          iconName={'log-out-outline'} 
+          title={'Logout'} 
+          onPress={() => {}} 
+          rightIcon={"chevron-forward"}
+          style={{color: '#ff666'}}/>
       </View>
     </ScrollView>
   );

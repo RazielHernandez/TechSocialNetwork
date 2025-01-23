@@ -10,14 +10,14 @@ import PaymentMethodsScreen from '../screens/PaymentsMethodsScreen';
 import NotificationScreen from '../screens/NotificationScren';
 import PaymentHistoryScreen from '../screens/PaymentHistoryScreen';
 
-const SettingsStack = createNativeStackNavigator();
+const ProfileStack = createNativeStackNavigator();
 
-const SettingsStackNavigator = () => {
+const ProfileStackNavigator = () => {
   return (
-    <SettingsStack.Navigator>
-        <SettingsStack.Screen 
-            name="Settings" 
-            component={SettingsScreen} 
+    <ProfileStack.Navigator>
+        <ProfileStack.Screen 
+            name="Profile" 
+            component={ProfileScreen} 
             options={{
                 headerStyle: { backgroundColor: '#141414' },
                 headerTintColor: '#fff',
@@ -28,7 +28,7 @@ const SettingsStackNavigator = () => {
                     </TouchableOpacity>
                 ),
             }}/>
-        <SettingsStack.Screen 
+        <ProfileStack.Screen 
             name="Edit Profile" 
             component={ProfileEditScreen} 
             options={{
@@ -41,35 +41,9 @@ const SettingsStackNavigator = () => {
                     </TouchableOpacity>
                 ),
             }}/>
-        <SettingsStack.Screen 
-            name="Support" 
-            component={SupportScreen} 
-            options={{
-                headerStyle: { backgroundColor: '#141414' },
-                headerTintColor: '#fff',
-                headerTitleStyle: { fontWeight: 'bold', fontSize: 20 },
-                headerRight: () => (
-                    <TouchableOpacity style={{marginRight: 15}}>
-                    <Icon name="notifications-outline" size={24} color="#fff" />
-                    </TouchableOpacity>
-                ),
-            }}/>
-         <SettingsStack.Screen 
-            name="Payment Methods" 
-            component={PaymentMethodsScreen} 
-            options={{
-                headerStyle: { backgroundColor: '#141414' },
-                headerTintColor: '#fff',
-                headerTitleStyle: { fontWeight: 'bold', fontSize: 20 },
-                headerRight: () => (
-                    <TouchableOpacity style={{marginRight: 15}}>
-                    <Icon name="notifications-outline" size={24} color="#fff" />
-                    </TouchableOpacity>
-                ),
-            }}/>
-        <SettingsStack.Screen 
-            name="Notifications" 
-            component={NotificationScreen} 
+        <ProfileStack.Screen 
+            name="Payment History" 
+            component={PaymentHistoryScreen} 
             options={{
                 headerStyle: { backgroundColor: '#141414' },
                 headerTintColor: '#fff',
@@ -81,8 +55,8 @@ const SettingsStackNavigator = () => {
                 ),
             }}/>
         
-    </SettingsStack.Navigator>
+    </ProfileStack.Navigator>
   );
 };
 
-export default SettingsStackNavigator;
+export default ProfileStackNavigator;

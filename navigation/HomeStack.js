@@ -2,16 +2,15 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MessagesScreen from '../screens/MessagesScreen';
-import ChatScreen from '../screens/ChatScreen';
+import HomeScreen from '../screens/HomeScreen';
+import ProjectScreen from '../screens/ProjectScreen';
 
+const HomeStack = createNativeStackNavigator();
 
-const MessagesStack = createNativeStackNavigator();
-
-const MessagesStackNavigator = () => {
+const HomeStackNavigation = () => {
   return (
-    <MessagesStack.Navigator>
-        <MessagesStack.Screen name="Messages" component={MessagesScreen} 
+    <HomeStack.Navigator>
+        <HomeStack.Screen name="Home" component={HomeScreen} 
             options={{
                 headerStyle: { backgroundColor: '#141414' },
                 headerTintColor: '#fff', 
@@ -22,7 +21,7 @@ const MessagesStackNavigator = () => {
                   </TouchableOpacity>
                 ),
             }}/>
-        <MessagesStack.Screen name="Chat" component={ChatScreen} 
+        <HomeStack.Screen name="Project" component={ProjectScreen} 
             options={{
                 headerStyle: { backgroundColor: '#141414' },
                 headerTintColor: '#fff', 
@@ -34,8 +33,8 @@ const MessagesStackNavigator = () => {
                 ),
             }}/>
         
-    </MessagesStack.Navigator>
+    </HomeStack.Navigator>
   );
 };
 
-export default MessagesStackNavigator;
+export default HomeStackNavigation;

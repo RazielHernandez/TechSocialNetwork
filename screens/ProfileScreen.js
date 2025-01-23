@@ -73,10 +73,9 @@ export default function ProfileScreen ({navigation}) {
             </View>
 
             <ButtonSettings iconName={'grid-outline'} onPress={() => {}} title={'Products'} />
-            <ButtonSettings iconName={'card-outline'} onPress={() => {}} title={'Payment'} />
+            <ButtonSettings iconName={'card-outline'} onPress={() => navigation.navigate('Payment History')} title={'Payment'} />
             <ButtonSettings iconName={'cube-outline'} onPress={() => {}} title={'Orders'} />
             <ButtonSettings iconName={'heart-outline'} onPress={() => {}} title={'Favourites'} />
-            <ButtonSettings iconName={'settings-outline'} onPress={() => navigation.navigate('Settings')} title={'Settings'} />
 
         </ScrollView>
     );

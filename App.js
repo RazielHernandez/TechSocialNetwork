@@ -14,7 +14,9 @@ import MessagesStackNavigator from './navigation/MessagesStack';
 
 import ButtonMain from './components/ButtonMain';
 import ButtonSettings from './components/ButtonSettings';
-import ChatScreen from './screens/ChatScreen';
+import HomeStack from './navigation/HomeStack';
+import ProfileStackNavigator from './navigation/ProfileStack';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -39,68 +41,70 @@ const App = () => {
     <GestureHandlerRootView>
       <NavigationContainer>
         <Tab.Navigator
-          screenOptions={{
+          screenOptions={({ route }) => ({
             headerShown: false,
-            headerStyle: { backgroundColor: '#141414' },
-            headerTintColor: '#fff',
-            headerTitleStyle: { fontWeight: 'bold' },
-            tabBarShowLabel: false,
-            headerRight: () => (
-              <TouchableOpacity style={styles.bellIcon}>
-                <Icon name="notifications-outline" size={24} color="#fff" />
-              </TouchableOpacity>
-            ),
-            tabBarStyle: styles.tabBar,
-            tabBarShowLabel: false,
-          }}
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === 'Home') {
+                iconName = focused ? 'home' : 'home-outline';
+              } else if (route.name === 'Settings') {
+                iconName = focused ? 'settings' : 'settings-outline';
+              } else if (route.name === 'Messages') {
+                iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
+              } else if (route.name === 'Profile') {
+                iconName = focused ? 'person' : 'person-outline';
+              } else if (route === 'Create') {
+                /*return (
+                  <View style={[styles.middleButton, focused && styles.middleButtonFocused]}>
+                    <Ionicons name="add" size={28} color={color} />
+                  </View>
+                );*/
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'white', 
+            tabBarInactiveTintColor: 'gray',
+            tabBarStyle: {
+              backgroundColor: '#121212',
+              borderTopWidth: 0.5, 
+              height: 90, 
+            },
+            tabBarLabelStyle: {
+              fontSize: 13, // Font size of the tab labels
+              fontWeight: 'bold',
+              paddingBottom: 10
+            },
+          })}
         >
           <Tab.Screen
-            name="Explore"
-            component={ExploreScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Icon name="compass-outline" size={28} color={color} />
-              ),
-            }}
+            name="Home"
+            component={HomeStack}
+            
+          />
+           <Tab.Screen
+            name="Messages"
+            component={MessagesStackNavigator}
           />
           <Tab.Screen
-            name="Search"
-            component={SearchScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Icon name="search-outline" size={28} color={color} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="CreatePost"
+            name="Create"
             component={CreatePostScreen}
             options={{
               tabBarButton: (props) => (
-                <TouchableOpacity style={styles.postButton} {...props} onPress={openCreateView}>
-                  <Icon name="add-circle-outline" size={56} color="#141414" />
+                <TouchableOpacity style={styles.middleButton} {...props} onPress={openCreateView}>
+                  <Icon name="add-circle-outline" size={60} color="#aaa" />
                 </TouchableOpacity>
               ),
             }}
           />
+         
           <Tab.Screen
-            name="Messages"
-            component={MessagesStackNavigator}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Icon name="chatbubble-outline" size={28} color={color} selectionColor={'#aaa'}/>
-              ),
-            }}
+            name="Profile"
+            component={ProfileStackNavigator}
           />
           
           <Tab.Screen
             name="Settings"
             component={SettingsStack}
-            options={{
-              tabBarIcon: ({color, size}) => (
-                <Icon name='person-outline' size={28} color={color} selectionColor={'#aaa'} />
-              ),
-            }}
           />
         </Tab.Navigator>
       </NavigationContainer>
@@ -168,17 +172,31 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     elevation: 5,
   },
+  middleButton: {
+    width: 70,
+    height: 70,
+    backgroundColor: '#141414',
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 70, 
+    color: '#fff'
+  },
+  middleButtonFocused: {
+    backgroundColor: '#676767', 
+  },
   postButton: {
     justifyContent: 'center',
     alignItems: 'center',
     top: 20,
     color: '#141414',
+    marginBottom: 70, 
   },
   bellIcon: {
     marginRight: 15,
   },
-  modal: { padding: 20, backgroundColor: '#141414' },
-  modalContent: { alignItems: 'center', color: '#fff' },
+  modal: { padding: 20, backgroundColor: '#141414', paddingHorizontal: 10 },
+  modalContent: { alignItems: 'center', color: '#fff', },
   modalTitle: { fontSize: 18, marginVertical: 5, color: '#fff' },
   modalText: { fontSize: 14, color: '#aaa', marginBottom: 5},
   modalIcon: {
