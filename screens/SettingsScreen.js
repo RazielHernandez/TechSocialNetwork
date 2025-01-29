@@ -29,7 +29,7 @@ export default function SettingsScreen({navigation}) {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Account</Text>
         <ButtonSettings iconName={'person-outline'} title={'Profile Information'} onPress={() => navigation.navigate('Edit Profile')} rightIcon={"chevron-forward"}/>
-        <ButtonSettings iconName={'lock-closed-outline'} title={'Security & Privacy'} onPress={() => {}} rightIcon={"chevron-forward"}/>
+        <ButtonSettings iconName={'lock-closed-outline'} title={'Security & Privacy'} onPress={() => navigation.navigate('Security & Privacy')} rightIcon={"chevron-forward"}/>
         <ButtonSettings iconName={'card-outline'} title={'Payment Options'} onPress={() => navigation.navigate('Payment Methods')} rightIcon={"chevron-forward"}/>
       </View>
 
@@ -37,8 +37,8 @@ export default function SettingsScreen({navigation}) {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Preferences</Text>
         <ButtonSettings iconName={'notifications-outline'} title={'Notifications'} onPress={() => navigation.navigate('Notifications')} rightIcon={"chevron-forward"}/>
-        <ButtonSettings iconName={'moon'} title={'Appearance'} onPress={() => {}} rightIcon={"chevron-forward"}/>
-        <ButtonSettings iconName={'globe-outline'} title={'Language & Region'} onPress={() => {}} rightIcon={"chevron-forward"}/>
+        <ButtonSettings iconName={'globe-outline'} title={'Language & Region'} onPress={() => navigation.navigate('Language')} rightIcon={"chevron-forward"}/>
+        <ButtonSettings iconName={'moon'} title={'Appearance'} onPress={() => navigation.navigate('Appearance')} rightIcon={"chevron-forward"}/>
       </View>
 
       {/* Help & Support Section */}

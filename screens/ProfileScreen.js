@@ -72,7 +72,7 @@ export default function ProfileScreen ({navigation}) {
                 </View>
             </View>
 
-            <ButtonSettings iconName={'grid-outline'} onPress={() => {}} title={'Products'} />
+            <ButtonSettings iconName={'grid-outline'} onPress={() => navigation.navigate('My Products')} title={'My Products'} />
             <ButtonSettings iconName={'card-outline'} onPress={() => navigation.navigate('Payment History')} title={'Payment'} />
             <ButtonSettings iconName={'cube-outline'} onPress={() => {}} title={'Orders'} />
             <ButtonSettings iconName={'heart-outline'} onPress={() => {}} title={'Favourites'} />

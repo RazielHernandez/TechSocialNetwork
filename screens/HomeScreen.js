@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons"; 
 import { Modalize } from "react-native-modalize";
+import ProjectCard from "../components/ProjectCard";
 
 const HomeScreen = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -69,44 +70,6 @@ const HomeScreen = ({ navigation }) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
-  const renderProjectCard = ({ item }) => (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() =>
-        navigation.navigate("Project", { project: item.project, creator: item.creator })
-      }
-    >
-      <View style={styles.cardHeader}>
-        <Image source={{ uri: item.creator.image }} style={styles.profileImage} />
-        <View style={{ flex: 1, marginLeft: 10 }}>
-          <Text style={styles.creatorName}>{item.creator.name}</Text>
-          <Text style={styles.category}>{item.category}</Text>
-        </View>
-        <TouchableOpacity>
-          <MaterialIcons name="more-vert" size={24} color="gray" />
-        </TouchableOpacity>
-      </View>
-      <Image source={{ uri: item.project.image }} style={styles.projectImage} />
-      <View style={styles.cardFooter}>
-        <Text style={styles.projectName}>{item.project.name}</Text>
-        <Text style={styles.projectDescription}>{item.project.description}</Text>
-        <Text style={styles.projectPrice}>{item.project.price}</Text>
-        <View style={styles.cardActions}>
-          <TouchableOpacity style={styles.actionButton}>
-            <Ionicons name="heart-outline" size={20} color="white" />
-            <Text style={styles.actionText}>{item.project.likes}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
-            <Ionicons name="chatbubble-outline" size={20} color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
-            <Ionicons name="share-social-outline" size={20} color="white" />
-          </TouchableOpacity>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
 
   return (
     <View style={styles.container}>
@@ -175,9 +138,17 @@ const HomeScreen = ({ navigation }) => {
 
         <FlatList
           data={projects}
-          renderItem={renderProjectCard}
           keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <ProjectCard 
+              item={item} 
+              onPress={() =>
+                navigation.navigate("Project", { project: item.project, creator: item.creator })
+              }
+            />
+          )}
         />
+
       </ScrollView>
     </View>
   );

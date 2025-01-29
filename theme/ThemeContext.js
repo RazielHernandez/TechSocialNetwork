@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 const themes = {
   light: {
     colors: {
-      background: '#aaa',
+      background: '#33aa33',
       text: '#000000',
     },
     fonts: {
@@ -16,7 +16,7 @@ const themes = {
   },
   dark: {
     colors: {
-      background: '#141414',
+      background: '#343434',
       text: '#ffffff',
     },
     fonts: {

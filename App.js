@@ -17,6 +17,8 @@ import ButtonSettings from './components/ButtonSettings';
 import HomeStack from './navigation/HomeStack';
 import ProfileStackNavigator from './navigation/ProfileStack';
 
+import { ThemeProvider } from './theme/ThemeContext';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -38,6 +40,9 @@ const App = () => {
   const openCreateView = () => modalizeRef.current?.open();
 
   return (
+    <ThemeProvider>
+      
+    
     <GestureHandlerRootView>
       <NavigationContainer>
         <Tab.Navigator
@@ -152,6 +157,7 @@ const App = () => {
         </View>
       </Modalize>
     </GestureHandlerRootView>
+    </ThemeProvider>
   );
 };
 
