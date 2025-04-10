@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-  View,
   Text,
   StyleSheet,
-  Image,
   ScrollView,
 } from 'react-native';
 
@@ -21,7 +19,7 @@ export default function SupportScreen() {
     <ScrollView style={styles.container}>
         
         <BaseContainer title={"Help & Support"} titleIcon={"help-circle-outline"}>
-          <Text style={styles.title}>
+          <Text style={styles.text}>
             In this section you can find various ways to get help and support for our app. Whether you prefer live chat, browsing documentation, checking FAQs, or sending an email, we are here to assist you.
           </Text>
           <ButtonSetting 
@@ -58,8 +56,8 @@ const getDynamicStyles = (colors) =>
     padding: 10,
     color: colors.text,
   },
-  title: {
-    fontSize: 17,
+  text: {
+    fontSize: 18,
     padding: 6,
     textAlign: 'left',
     color: colors.text,

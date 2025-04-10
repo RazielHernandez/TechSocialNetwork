@@ -46,9 +46,9 @@ const NotificationView = ({ item, expanded, toggleExpand, deleteNotification }) 
                 <View style={styles.smallContainer}>
                     <View style={styles.expandIcon}>
                         <Ionicons
-                        name={expanded[item.id] ? "chevron-up-outline" : "chevron-down-outline"}
-                        size={20}
-                        color="#777"
+                            name={expanded[item.id] ? "chevron-up-outline" : "chevron-down-outline"}
+                            size={20}
+                            color="#777"
                         />
                     </View>
                 </View>

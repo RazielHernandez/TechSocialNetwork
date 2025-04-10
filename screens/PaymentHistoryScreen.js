@@ -8,58 +8,65 @@ import {
   StyleSheet,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from '../theme/ThemeContext.js';
 
 const PaymentHistoryScreen = () => {
   const [payments, setPayments] = useState([
     {
       id: "1",
       date: "2025-01-15",
-      name: "Netflix Subscription",
-      amount: "$15.99",
+      name: "Demo presentation",
+      amount: "$0.00",
       status: "Completed",
-      type: "subscription", // Type for icon
-      details: "Monthly Netflix subscription for January 2025.",
+      type: "learning", 
+      details: "Demo about new AI technologies in automotive industry.",
     },
     {
       id: "2",
       date: "2025-01-10",
-      name: "Amazon Order",
+      name: "Raspberry Pi 4 x 2",
       amount: "$129.99",
       status: "Completed",
-      type: "shopping", // Type for icon
-      details: "Order #12345 from Amazon - Noise-canceling headphones.",
+      type: "hardware", 
+      details: "Raspberry Pi 4 set, including cables and accessories.",
     },
     {
       id: "3",
       date: "2025-01-05",
-      name: "Spotify Premium",
+      name: "Machine Learning Course",
       amount: "$9.99",
       status: "Pending",
-      type: "subscription", // Type for icon
-      details: "Monthly Spotify Premium subscription for January 2025.",
+      type: "learning",
+      details: "Online course on machine learning and AI applications.",
     },
     {
       id: "4",
       date: "2025-01-03",
-      name: "Restaurant Bill",
+      name: "Smart Home Device",
       amount: "$45.50",
       status: "Completed",
-      type: "food", // Type for icon
-      details: "Dinner at Bella Italia restaurant.",
+      type: "IoT", 
+      details: "Smart home device for home automation.",
     },
   ]);
 
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const {colors } = useTheme();
+  const styles = getDynamicStyles(colors);
 
   // Get icon based on product type
   const getIconName = (type) => {
     switch (type) {
-      case "subscription":
-        return "film-outline"; 
-      case "shopping":
-        return "cart-outline"; 
-      case "food":
-        return "restaurant-outline"; 
+      case "learning":
+        return "book-outline"; 
+      case "cloud":
+        return "cloud-outline"; 
+      case "files":
+        return "folder-outline";
+      case "hardware":
+        return "hardware-chip-outline";
+      case "IoT":
+        return "wifi";
       default:
         return "help-circle-outline";
     }
@@ -74,7 +81,7 @@ const PaymentHistoryScreen = () => {
       <Ionicons
         name={getIconName(item.type)}
         size={24}
-        color="#fff"
+        color={colors.subtitle}
         style={styles.paymentIcon}
       />
 
@@ -149,14 +156,15 @@ const PaymentHistoryScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const getDynamicStyles = (colors) =>
+  StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#141414",
+    backgroundColor: colors.background,
     padding: 20,
   },
   paymentCard: {
-    backgroundColor: "#141414",
+    backgroundColor: colors.background,
     borderRadius: 10,
     padding: 15,
     marginBottom: 15,
@@ -166,7 +174,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 2,
-    borderColor: '#aaa',
+    borderColor: colors.subtitle,
     borderWidth: 0.5,
   },
   paymentIcon: {
@@ -175,11 +183,11 @@ const styles = StyleSheet.create({
   paymentName: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#fff",
+    color: colors.text,
   },
   paymentDate: {
     fontSize: 14,
-    color: "#ccc",
+    color: colors.subtitle,
   },
   paymentInfo: {
     marginLeft: "auto",
@@ -188,24 +196,26 @@ const styles = StyleSheet.create({
   paymentAmount: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#aaa",
+    color: colors.subtitle,
   },
   paymentStatus: {
     fontSize: 14,
     fontWeight: "bold",
     marginTop: 5,
     borderRadius: 5,
+    borderColor: colors.subtitle,
+    borderWidth: 1,
     paddingHorizontal: 8,
     paddingVertical: 2,
     overflow: "hidden",
   },
   completedStatus: {
-    backgroundColor: "#343434",
-    color: "#fff",
+    backgroundColor: colors.baseContainerBody,
+    color: colors.text,
   },
   pendingStatus: {
-    backgroundColor: "#343434",
-    color: "#fff",
+    backgroundColor: colors.background,
+    color: colors.text,
   },
   modalContainer: {
     flex: 1,

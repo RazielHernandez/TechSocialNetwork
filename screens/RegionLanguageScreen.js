@@ -114,7 +114,10 @@ const LocationAndLanguagesScreen = () => {
     <View style={styles.container}>
       {/* Change Location Section */}
 
-      <BaseContainer title={"Location"} subtitle={"Select your current location"}>
+      <BaseContainer 
+        title={"Location"} 
+        subtitle={"Select your current location"}
+        titleIcon={"location-outline"}>
         <TextInput
           style={styles.input}
           placeholder="Type your location"
@@ -139,7 +142,10 @@ const LocationAndLanguagesScreen = () => {
       </BaseContainer>
 
       {/* Add Spoken Languages Section */}
-        <BaseContainer title={"Spoken Languages"} subtitle={"Select all the languages you are able to comunicate"}>
+      <BaseContainer 
+        title={"Spoken Languages"} 
+        subtitle={"Select all the languages you are able to comunicate"}
+        titleIcon={"language-outline"}>
         <View style={styles.languageInputContainer}>
           <TextInput
             style={styles.inputLanguage}
@@ -191,11 +197,6 @@ const getDynamicStyles = (colors) =>
     padding: 20,
     backgroundColor: colors.background,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
   input: {
     borderWidth: 1,
     borderColor: colors.subtitle,
@@ -203,6 +204,7 @@ const getDynamicStyles = (colors) =>
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
+    fontSize: 18,
   },
   inputLanguage: {
     flex: 1,
@@ -211,6 +213,7 @@ const getDynamicStyles = (colors) =>
     color: colors.text,
     borderRadius: 8,
     padding: 10,
+    fontSize: 18,
   },
   autocompleteItem: {
     padding: 10,
@@ -232,6 +235,7 @@ const getDynamicStyles = (colors) =>
   addButtonText: {
     color: colors.background,
     fontWeight: 'bold',
+    fontSize: 18,
   },
   languageTags: {
     flexDirection: 'row',
@@ -249,6 +253,7 @@ const getDynamicStyles = (colors) =>
   languageText: {
     marginRight: 5,
     color: colors.text,
+    fontSize: 16,
   },
   removeButton: {
     color: 'red',

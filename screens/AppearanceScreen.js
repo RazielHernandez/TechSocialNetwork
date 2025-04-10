@@ -60,7 +60,7 @@ const getDynamicStyles = (colors) =>
       backgroundColor: colors.background,
     },
     text: {
-      fontSize: 16,
+      fontSize: 18,
       marginVertical: 10,
       color: colors.text,
     },

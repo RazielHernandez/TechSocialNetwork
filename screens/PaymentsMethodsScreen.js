@@ -7,13 +7,11 @@ import {
   TextInput,
   StyleSheet,
   Modal,
-  Alert,
-  Button,
+  TouchableWithoutFeedback
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 import { Swipeable } from "react-native-gesture-handler";
-import ButtonSettings from "../components/ButtonSettings";
 import ButtonMain from "../components/ButtonMain";
 import { useTheme } from '../theme/ThemeContext.js';
 
@@ -149,14 +147,17 @@ const PaymentMethodsScreen = () => {
   const renderPaymentMethod = ({ item }) => (
     <Swipeable renderRightActions={() => renderRightActions(item.id)}>
       <View style={styles.cardContainer}>
-        <Ionicons
+        {/*<Ionicons
           name={item.id === defaultCardId ? "star" : "star-outline"}
           size={24}
           color={item.id === defaultCardId ? "#FFD700" : "#ccc"}
           style={styles.starIcon}
-        />
-
+        />*/}
+        <View style={{ flex: 1 }}>
+        <Text style={styles.cardNumber}>{`Card saved`}</Text>
         <Text style={styles.cardNumber}>{`**** **** **** ${item.cardNumber.slice(-4)}`}</Text>
+        </View>
+        
 
         <TouchableOpacity
           style={styles.editButton}
@@ -192,62 +193,110 @@ const PaymentMethodsScreen = () => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>
-              {selectedCard ? "Edit Payment Method" : "Add Payment Method"}
-            </Text>
-
-            <TextInput
-              style={styles.input}
-              placeholder="Card Number"
-              value={formData.cardNumber}
-              onChangeText={(text) => setFormData({ ...formData, cardNumber: text })}
-              keyboardType="number-pad"
-            />
-            {errors.cardNumber && <Text style={styles.errorText}>{errors.cardNumber}</Text>}
-
-            <TextInput
-              style={styles.input}
-              placeholder="Expiry Date (MM/YY)"
-              value={formData.expiryDate}
-              onChangeText={(text) => setFormData({ ...formData, expiryDate: text })}
-              keyboardType="number-pad"
-            />
-            {errors.expiryDate && <Text style={styles.errorText}>{errors.expiryDate}</Text>}
-
-            <TextInput
-              style={styles.input}
-              placeholder="CCV"
-              value={formData.ccv}
-              onChangeText={(text) => setFormData({ ...formData, ccv: text })}
-              keyboardType="number-pad"
-            />
-            {errors.ccv && <Text style={styles.errorText}>{errors.ccv}</Text>}
-
-            <TextInput
-              style={styles.input}
-              placeholder="Card Name"
-              value={formData.cardName}
-              onChangeText={(text) => setFormData({ ...formData, cardName: text })}
-            />
-            {errors.cardName && <Text style={styles.errorText}>{errors.cardName}</Text>}
-
-            <View style={styles.modalActions}>
-              {selectedCard && (
-                <TouchableOpacity
-                  style={styles.deleteButton}
-                  onPress={deleteCardFromModal}
-                >
-                  <Text style={styles.deleteButtonText}>Delete</Text>
+        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+          <View style={styles.modalBackdrop}>
+            <TouchableWithoutFeedback onPress={() => {}}>
+              <View style={styles.modalCardForm}>
+                {/* Close Button */}
+                <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                  <Ionicons name="close" size={24} color="#888" />
                 </TouchableOpacity>
-              )}
-              <Button title="Cancel" style={styles.deleteButtonText} onPress={() => setModalVisible(false)} />
-              <Button title="Save" style={styles.deleteButtonText} onPress={handleSave} />
-            </View>
+
+                {/* CARD NUMBER */}
+                <View style={styles.formGroup}>
+                  <Text style={styles.label}>CARD NUMBER</Text>
+                  <View style={styles.inputRow}>
+                    <TextInput
+                      style={[styles.inputMono, { flex: 1 }]}
+                      value={formData.cardNumber}
+                      onChangeText={(text) => setFormData({ ...formData, cardNumber: text })}
+                      keyboardType="number-pad"
+                      placeholder="1234 5678 1234 5678"
+                      maxLength={19}
+                    />
+                    {formData.cardNumber.match(/^\d{16}$/) && (
+                      <Ionicons name="checkmark-circle" size={24} color="green" />
+                    )}
+                  </View>
+                </View>
+
+                {/* NAME ON CARD */}
+                <View style={styles.formGroup}>
+                  <Text style={styles.label}>NAME ON CARD</Text>
+                  <View style={styles.inputRow}>
+                    <TextInput
+                      style={styles.inputMono}
+                      value={formData.cardName}
+                      onChangeText={(text) => setFormData({ ...formData, cardName: text })}
+                      placeholder="John Doe"
+                    />
+                    {formData.cardName.trim() !== "" && (
+                      <Ionicons name="checkmark-circle" size={24} color="green" />
+                    )}
+                  </View>
+                </View>
+
+                {/* VALID UNTIL + VCC */}
+                <View style={styles.formGroupRow}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.label}>VALID UNTIL</Text>
+                    <View style={styles.inputRow}>
+                      <TextInput
+                        style={styles.inputMono}
+                        value={formData.expiryDate}
+                        onChangeText={(text) => setFormData({ ...formData, expiryDate: text })}
+                        placeholder="12/25"
+                        maxLength={5}
+                      />
+                      {formData.expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/) && (
+                        <Ionicons name="checkmark-circle" size={24} color="green" />
+                      )}
+                    </View>
+                  </View>
+
+                  <View style={{ flex: 1, marginLeft: 10 }}>
+                    <Text style={styles.label}>VCC</Text>
+                    <View style={styles.inputRow}>
+                      <TextInput
+                        style={styles.inputMono}
+                        value={formData.ccv}
+                        onChangeText={(text) => setFormData({ ...formData, ccv: text })}
+                        placeholder="123"
+                        keyboardType="number-pad"
+                        maxLength={3}
+                      />
+                      {formData.ccv.match(/^\d{3}$/) && (
+                        <Ionicons name="checkmark-circle" size={24} color="green" />
+                      )}
+                    </View>
+                  </View>
+                </View>
+
+                <View style={styles.favoriteContainer}>
+                  <TouchableOpacity
+                    style={styles.checkbox}
+                    onPress={() => setFormData({ ...formData, isFavorite: !formData.isFavorite })}
+                  >
+                    <Ionicons
+                      name={formData.isFavorite ? "checkbox" : "square-outline"}
+                      size={24}
+                      color={colors.subtitle}
+                    />
+                    <Text style={styles.favoriteText}>Mark as favorite</Text>
+                  </TouchableOpacity>
+                </View>
+
+                {/* CONFIRM BUTTON */}
+                <TouchableOpacity onPress={handleSave} style={styles.validateButton}>
+                  <Text style={styles.validateButtonText}>Confirm</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </Modal>
+
+
     </View>
   );
 };
@@ -340,7 +389,6 @@ const getDynamicStyles = (colors) =>
     textAlign: "center",
   },
   deleteSwipe: {
-    
     paddingVertical: 10,
     paddingRight: 10,
     marginLeft: -30,
@@ -372,6 +420,89 @@ const getDynamicStyles = (colors) =>
     fontWeight: "bold",
     textAlign: "center",
   },
+
+  modalCardForm: {
+    backgroundColor: colors.baseContainerFooter,
+    padding: 20,
+    borderRadius: 10,
+    width: "90%",
+  },
+  formGroup: {
+    marginBottom: 20,
+  },
+  formGroupRow: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#888",
+    marginBottom: 5,
+  },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 2,
+    borderColor: colors.subtitle,
+    paddingVertical: 5,
+  },
+  inputMono: {
+    flex: 1,
+    fontSize: 18,
+    fontFamily: "monospace",
+    color: colors.subtitle,
+    placeholderTextColor: colors.subtitle,
+  },
+  validateButton: {
+    marginTop: 20,
+    padding: 15,
+    borderWidth: 2,
+    borderColor: colors.subtitle,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  validateButtonText: {
+    fontSize: 18,
+    color: colors.subtitle,
+    fontWeight: "bold",
+  },
+
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  
+  closeButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    zIndex: 10,
+    padding: 5,
+  },
+  
+  favoriteContainer: {
+    marginTop: 15,
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  
+  checkbox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    color: colors.subtitle,
+  },
+  
+  favoriteText: {
+    marginLeft: 8,
+    fontSize: 16,
+    color: colors.subtitle,
+  },
+  
 });
 
 export default PaymentMethodsScreen;

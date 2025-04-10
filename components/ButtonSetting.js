@@ -64,12 +64,12 @@ const getDynamicStyles = (colors) =>
             fontSize: 24,
         },
         buttonText: {
-            fontSize: 18,
+            fontSize: 20,
             color: colors.text,
             paddingVertical: 2,
         },
         subtitle: {
-            fontSize: 16,
+            fontSize: 18,
             color: colors.text,
         },
 });

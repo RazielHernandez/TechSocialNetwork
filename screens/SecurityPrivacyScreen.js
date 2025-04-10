@@ -75,11 +75,9 @@ const SecurityPrivacyScreen = () => {
         footer={
           <>
             <View style={styles.footerElement}>
-              <Text style={styles.text}>
-              Enable Two-Factor Authentication
-              </Text>
+              <Text style={styles.text}>Enable Two-Factor Authentication</Text>
               <Switch
-                value={isDarkMode}
+                value={isTwoFAEnabled}
                 onValueChange={(value) => {
                   setTwoFAEnabled(value);
                   if (value) {
@@ -91,9 +89,7 @@ const SecurityPrivacyScreen = () => {
               />
             </View>
             <View style={styles.footerElement}>
-              <Text style={styles.text}>
-              Set Account as Private
-              </Text>
+              <Text style={styles.text}>Set Account as Private</Text>
               <Switch
                 value={isDarkMode}
                 onValueChange={() => {}}
@@ -237,6 +233,13 @@ const getDynamicStyles = (colors) =>
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 10,
+  },
+  text: {
+    fontSize: 16,
+    color: colors.text,
+    flex: 1,
+    marginRight: 12,
+    flexWrap: 'wrap',
   },
   input: {
     borderWidth: 1,

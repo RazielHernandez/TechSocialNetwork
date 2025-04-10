@@ -64,14 +64,14 @@ const getDynamicStyles = (colors) =>
         margin: 8,
       },
       headerContainer: {
-        paddingHorizontal: 4,
         margin: 8,
+        flexShrink: 1,
+        flex: 1,
       },
       header: {
         flexDirection: 'row',
         alignItems: 'center',
         margin: 8,
-        marginRight: 24,
       },
       titleIcon: {
         width: 48,
