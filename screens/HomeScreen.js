@@ -10,14 +10,17 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons"; 
-import { Modalize } from "react-native-modalize";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ProjectCard from "../components/ProjectCard";
+import { useTheme } from '../theme/ThemeContext.js';
 
 const HomeScreen = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [selectedFilter, setSelectedFilter] = useState(null);
+
+  const { colors } = useTheme();
+  const styles = getDynamicStyles(colors);
 
   const filters = [
     "Software",
@@ -154,8 +157,9 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#141414" },
+const getDynamicStyles = (colors) =>
+  StyleSheet.create({
+  container: { flex: 1, backgroundColor: colors.background },
   searchButton: { position: "absolute", top: 40, right: 20, zIndex: 1 },
   modalContainer: {
     flex: 1,

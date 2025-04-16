@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, Image } from 'react-native';
 import ButtonMain from '../components/ButtonMain';
+import { useTheme } from '../theme/ThemeContext.js';
 
 const ChatScreen = () => {
   // Dummy data for messages
@@ -10,6 +11,9 @@ const ChatScreen = () => {
     { id: '3', text: 'I’m good, thanks! How about you?', type: 'received' },
     { id: '4', text: 'I’m doing well, working on a project.', type: 'sent' },
   ]);
+
+  const { colors } = useTheme();
+  const styles = getDynamicStyles(colors);
 
   // Input state for new messages
   const [inputText, setInputText] = useState('');
@@ -72,10 +76,11 @@ const ChatScreen = () => {
         <TextInput
           style={styles.input}
           placeholder="Type a message..."
+          placeholderTextColor={colors.subtitle}
           value={inputText}
           onChangeText={setInputText}
         />
-        <ButtonMain onPress={handleSend}>
+        <ButtonMain onPress={handleSend} style={styles.sendButton}>
             <Text style={styles.sendButtonText}>Send</Text>
         </ButtonMain>
         
@@ -84,14 +89,15 @@ const ChatScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const getDynamicStyles = (colors) =>
+  StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#353535',
+    backgroundColor: colors.baseContainerFooter,
   },
   profileSection: {
     alignItems: 'center',
-    backgroundColor: '#141414',
+    backgroundColor: colors.backgroundColor,
     paddingVertical: 10,
   },
   profileImage: {
@@ -103,7 +109,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff',
+    color: colors.text,
   },
   messageList: {
     flex: 1,
@@ -118,51 +124,60 @@ const styles = StyleSheet.create({
   },
   sentMessage: {
     alignSelf: 'flex-end',
-    backgroundColor: '#aaa',
+    backgroundColor: colors.baseContainerBody,
   },
   receivedMessage: {
     alignSelf: 'flex-start',
-    backgroundColor: '#242424',
+    backgroundColor: colors.subtitle,
   },
   profileSubtitle: {
     fontSize: 14,
-    color: '#aaa',
+    color: colors.subtitle,
   },
   sentMessageText: {
-    color: '#000', 
+    color: colors.text, 
   },
   receivedMessageText: {
-    color: '#fff',
+    color: colors.background,
   },
   messageText: {
-    color: '#fff',
+    color: colors.background,
     fontSize: 16,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
     borderTopWidth: 1,
-    backgroundColor: '#141414',
+    borderTopColor: colors.subtitle,
+    backgroundColor: colors.baseContainerHeader,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
   },
   input: {
     flex: 1,
     height: 40,
-    paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: colors.subtitle,
     borderRadius: 20,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: colors.background,
+    placeholderTextColor: colors.subtitle,
+    color: colors.text,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
   },
   sendButton: {
     marginLeft: 10,
-    backgroundColor: '#0084ff',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
+    height: 40, 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   sendButtonText: {
-    color: '#141414',
+    color: colors.text,
     fontSize: 16,
   },
 });

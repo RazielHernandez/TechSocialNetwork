@@ -9,10 +9,14 @@ import {
   Linking,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from '../theme/ThemeContext.js';
 
 const ProjectScreen = ({ route, navigation }) => {
   const { project } = route.params; 
   const { creator } = route.params;
+
+  const { colors } = useTheme();
+  const styles = getDynamicStyles(colors);
 
   const handleOpenLink = () => {
     const projectUrl = "https://example.com"; // Replace with the actual project URL
@@ -69,15 +73,15 @@ const ProjectScreen = ({ route, navigation }) => {
       {/* Action Buttons */}
       <View style={styles.actionsContainer}>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="heart-outline" size={20} color="white" />
+          <Ionicons name="heart-outline" size={20} color={colors.text} />
           <Text style={styles.actionText}>Like</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="chatbubble-outline" size={20} color="white" />
+          <Ionicons name="chatbubble-outline" size={20} color={colors.text} />
           <Text style={styles.actionText}>Message</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="share-social-outline" size={20} color="white" />
+          <Ionicons name="share-social-outline" size={20} color={colors.text} />
           <Text style={styles.actionText}>Share</Text>
         </TouchableOpacity>
       </View>
@@ -85,15 +89,16 @@ const ProjectScreen = ({ route, navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#141414" },
+const getDynamicStyles = (colors) =>
+  StyleSheet.create({
+  container: { flex: 1, backgroundColor: colors.background },
   header: {
     flexDirection: "row",
     alignItems: "center",
     padding: 15,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: colors.text,
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    borderBottomColor: colors.subtitle,
   },
   imageGallery: {
     height: 200,
@@ -117,13 +122,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 5,
-    color: '#fff',
+    color: colors.text,
   },
   projectPrice: {
     fontSize: 18,
     color: "green",
     marginBottom: 10,
-    color: '#ccc',
+    color: colors.subtitle,
   },
   creatorInfo: {
     alignItems: "center",
@@ -137,11 +142,11 @@ const styles = StyleSheet.create({
   creatorName: {
     fontSize: 14,
     fontWeight: "bold",
-    color: '#fff',
+    color: colors.text,
   },
   projectDescription: {
     fontSize: 16,
-    color: "#aaa",
+    color: colors.siubtitle,
     marginBottom: 10,
   },
   sectionTitle: {
@@ -149,11 +154,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 20,
     marginBottom: 10,
-    color: '#ccc'
+    color: colors.text
   },
   longDescription: {
     fontSize: 16,
-    color: "#aaa",
+    color: colors.text,
     lineHeight: 22,
   },
   linkContainer: {
@@ -162,7 +167,7 @@ const styles = StyleSheet.create({
   },
   projectLink: {
     fontSize: 16,
-    color: "#fff",
+    color: colors.subtitle,
     textDecorationLine: "underline",
   },
   actionsContainer: {
@@ -170,7 +175,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingVertical: 20,
     borderTopWidth: 1,
-    borderTopColor: "#ddd",
+    borderTopColor: colors.subtitle,
   },
   actionButton: {
     flexDirection: "row",
@@ -179,7 +184,7 @@ const styles = StyleSheet.create({
   actionText: {
     marginLeft: 5,
     fontSize: 16,
-    color: '#aaa',
+    color: colors.subtitle,
   },
 });
 

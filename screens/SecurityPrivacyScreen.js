@@ -104,16 +104,18 @@ const SecurityPrivacyScreen = () => {
         {/* Password Management */}
         <ButtonMain
           onPress={() => setPasswordModalVisible(true)}
+          style={{marginTop: 10}}
         >
           <Text style={styles.buttonText}>Modify Password</Text>
         </ButtonMain>
         <ButtonMain
           onPress={() => Alert.alert('Privacy Policy', 'Redirecting to Privacy Policy...')}
+          style={{marginTop: 10}}
         >
           <Text style={styles.buttonText}>View Privacy Policy</Text>
         </ButtonMain>
         <ButtonMain
-          style={styles.deleteButton}
+          style={[styles.deleteButton, {marginTop: 10}]}
           onPress={() =>
             Alert.alert(
               'Delete Account',
@@ -265,7 +267,7 @@ const getDynamicStyles = (colors) =>
     marginVertical: 10,
   },
   deleteButton: {
-    backgroundColor: 'red',
+    backgroundColor: '#fc6575',
   },
   buttonText: {
     color: colors.text,

@@ -6,11 +6,11 @@ import {
 } from 'react-native';
 import { useTheme } from '../theme/ThemeContext.js';
 
-const ButtonMain = ({children, onPress}) =>  {
+const ButtonMain = ({children, onPress, style}) =>  {
   const { colors } = useTheme();
   const styles = getDynamicStyles(colors);
   return (
-      <TouchableOpacity style={styles.submitButton} onPress={onPress}>
+      <TouchableOpacity style={[styles.submitButton, style]} onPress={onPress}>
           <Text style={styles.submitButtonText}>{children}</Text>
       </TouchableOpacity>
   );
@@ -26,8 +26,8 @@ const getDynamicStyles = (colors) =>
         paddingHorizontal: 30,
         borderRadius: 20,
         alignItems: 'center',
-        marginTop: 10,
-        marginHorizontal: 20
+        //marginTop: 10,
+        //marginHorizontal: 20
       },
       submitButtonText: { 
         color: colors.text, 

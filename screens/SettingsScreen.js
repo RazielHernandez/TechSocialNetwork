@@ -63,8 +63,7 @@ export default function SettingsScreen({navigation}) {
         <ButtonSetting 
           iconName={'log-out-outline'} 
           title={'Logout'} 
-          onPress={() => {}} 
-          rightIcon={"chevron-forward"}
+          onPress={() => {}}
           isDanger={true}/>
         </View>
       </BaseContainer>
