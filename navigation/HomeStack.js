@@ -26,9 +26,7 @@ const HomeStackNavigation = () => {
   return (
     <HomeStack.Navigator screenOptions={screenOptions}>
         <HomeStack.Screen name="Home" component={HomeScreen} />
-            
         <HomeStack.Screen name="Project" component={ProjectScreen} />
-        
     </HomeStack.Navigator>
   );
 };

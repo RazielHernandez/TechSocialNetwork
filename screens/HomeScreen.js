@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
     // Sample project cards
     {
       id: "1",
-      creator: { name: "John Doe", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80" },
+      creator: { name: "John Doe", image: "https://media.istockphoto.com/id/1300512215/photo/headshot-portrait-of-smiling-ethnic-businessman-in-office.jpg?s=612x612&w=0&k=20&c=QjebAlXBgee05B3rcLDAtOaMtmdLjtZ5Yg9IJoiy-VY=" },
       category: "Software",
       project: {
         name: "My App",
@@ -57,7 +57,7 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       id: "2",
-      creator: { name: "Jane Smith", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80" },
+      creator: { name: "Jane Smith", image: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/short/linkedin-profile-picture-maker/dummy_image/thumb/004.webp" },
       category: "Hardware",
       project: {
         name: "Cool Gadget",

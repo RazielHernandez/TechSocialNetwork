@@ -58,7 +58,7 @@ const ChatScreen = () => {
                 source={{ uri: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80' }}
                 style={styles.profileImage}
             />
-            <Text style={styles.profileName}>John Doe</Text>
+            <Text style={styles.profileName}>Sarah Chen</Text>
             <Text style={styles.profileSubtitle}>Software Engineer</Text>
         </View>
       {/* Messages List */}
@@ -68,7 +68,6 @@ const ChatScreen = () => {
         renderItem={renderMessage}
         keyExtractor={(item) => item.id}
         style={styles.messageList}
-        inverted // Invert the list to show the latest messages at the bottom
       />
 
       {/* Message Input */}

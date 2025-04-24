@@ -44,7 +44,7 @@ export default function ProfileEditScreen({ navigation }) {
       <View style={styles.profilePictureContainer}>
         <Image
           source={{
-            uri: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80',
+            uri: 'https://media.istockphoto.com/id/1682296067/photo/happy-studio-portrait-or-professional-man-real-estate-agent-or-asian-businessman-smile-for.jpg?s=612x612&w=0&k=20&c=9zbG2-9fl741fbTWw5fNgcEEe4ll-JegrGlQQ6m54rg=',
           }}
           style={styles.profilePicture}
         />
@@ -124,7 +124,8 @@ const getDynamicStyles = (colors) =>
     borderColor: colors.background,
   },
   inputContainer: {
-    marginBottom: 20,
+    marginVertical: 20,
+    marginHorizontal: 30,
   },
   input: {
     borderWidth: 1,
