@@ -1,18 +1,15 @@
-<p align="center">
-  <img src="africa_logo.png" alt="App Logo" width="200"/>
-</p>
 
-# Africa
+# Technology Social Network
 
 ---
 
 ## 📱 About the App
-Africa is an application developed for learning purposes, the idea of which is to present information and multimedia content to users about the fauna of the African continent. 
+Tech Social Netowrk is an application developed for learning purposes, the goal of this app is generate all the UI for a social network when users can share and sell IT projects, chat between them and follow other ideas, even more, buy some gadgets, code, prototypes and knowledge from other users
 
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="Media/AppImage1.png" alt="Home Screen" width="200"/>
+  <img src="media/HomeScreen.png" alt="Home Screen" width="200"/>
   <img src="Media/AppImage3.png" alt="Details Screen" width="200"/>
   <img src="Media/AppImage4.png" alt="Vide Gallery" width="200"/>
   <img src="Media/AppImage6.png" alt="Map" width="200"/>
